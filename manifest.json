@@ -1,0 +1,25 @@
+{
+  "name": "개인 자동 로그인",
+  "description": "로그인 편하려고 만드는 프로그램",
+  "version": "1.0",
+  "manifest_version": 2,
+  "permissions": ["tabs","activeTab","http://*/*", "https://*/*","cookies"],
+  "content_scripts": [ {
+    "js": ["jquery-1.11.3.min.js", "common.js"],
+    "resources": [ "./data.json" ],
+    "matches": [
+        "https://nid.naver.com/*",
+        "https://*.youtube.com/*",
+        "https://*.inven.co.kr/*",
+        "https://coolenjoy.net/*",
+        "http://tcafe2a.com/*"
+      ]
+  }],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "browser_action": {
+    "default_title": "로그인",
+    "default_icon": "images/icon.png"
+  }
+}
