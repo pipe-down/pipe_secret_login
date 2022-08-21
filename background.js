@@ -49,8 +49,8 @@ async function login() {
                         "console.log('naver_login') \n"+
                         "document.querySelector('#id').value='"+loginData[1]["id"]+"'; \n"+ 
                         "document.querySelector('#pw').value='"+loginData[1]["pwd"]+"'; \n" +
-                        "document.querySelector('#keep').click(); \n" +
-                        "document.getElementById('wait').click(); \n"
+                        "document.querySelector('#keep').click(); \n" 
+                        //"document.querySelector('#wait').click(); \n"
                     })
                     // chrome.tabs.executeScript(tabId, { code: "document.getElementById('log\.login').click();" })
                 }
