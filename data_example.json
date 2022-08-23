@@ -5,7 +5,7 @@
             "pwd": "",
             "try": 1,
             "url": "https://www.youtube.com/account_playback",
-            "loginUrl": "https://accounts.google.com/signin/v2/",
+            "loginUrl": "https://accounts.google.com/",
             "xpathValue": "/html/body/ytd-app/div[1]/ytd-page-manager/ytd-browse[1]/ytd-two-column-browse-results-renderer/div[1]/ytd-section-list-renderer/div[2]/ytd-item-section-renderer[2]/div[3]/ytd-settings-options-renderer[2]/div/div[2]/div/ytd-settings-checkbox-renderer[1]/div/tp-yt-paper-checkbox/div[1]/div"
         },
         {
