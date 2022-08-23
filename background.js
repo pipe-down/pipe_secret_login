@@ -9,9 +9,11 @@ async function login() {
         chrome.tabs.update({ url: loginData[0]["url"] }, await function (tab) {
             chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
                 if (tab.url.indexOf('youtube.com') != -1 && changeInfo.status == 'complete') {
+                    const tabUrl = tab.url;
                     chrome.tabs.executeScript(tabId, { code: 
                         "console.log('google_login') \n"+
-                        "if (document.querySelector('#identifierId')!=null) { \n"+
+                        // "console.log('"+tabUrl+"') \n"+
+                        "if ('"+tabUrl+"'.indexOf('"+loginData[0]["loginUrl"]+"') != -1 && document.querySelector('#identifierId')!=null) { \n"+
                         "   document.querySelector('#identifierId').value='"+loginData[0]["id"]+"'; \n"+
                         "   if (document.querySelector('#identifierId').value=='"+loginData[0]["id"]+"') { \n"+
                         "       document.querySelector('#identifierNext').click(); \n"+
@@ -19,7 +21,7 @@ async function login() {
                         "} \n"
                     })
                     chrome.tabs.executeScript(tabId, { code: 
-                        "if (document.querySelector('input[type=\"password\"]')!=null) { \n"+
+                        "if ('"+tabUrl+"'.indexOf('"+loginData[0]["loginUrl"]+"') != -1 && document.querySelector('input[type=\"password\"]')!=null) { \n"+
                         "   document.querySelector('input[type=\"password\"]').value='"+loginData[0]["pwd"]+"'; \n"+
                         "   if (document.querySelector('input[type=\"password\"]').value=='"+loginData[0]["pwd"]+"') { \n"+
                         "       document.querySelector('#passwordNext').click(); \n"+
@@ -28,11 +30,13 @@ async function login() {
                     })
 
                     chrome.tabs.executeScript(tabId, { code: 
-                        "if ((getElementByXpath('"+loginData[0]["xpathValue"]+"')!=null && getElementByXpath('"+loginData[0]["xpathValue"]+"').className.indexOf('checked') > -1)) { \n"+
-                            "getElementByXpath('"+loginData[0]["xpathValue"]+"').click(); \n"+
-                        "} \n"+
-                        "if (document.getElementById('toggle') != null && document.getElementById('toggle').checked || document.getElementById('toggle').ariaPressed=='true' || document.getElementById('toggle').active) { \n"+
-                        "   document.getElementById('toggle').click(); \n"+
+                        "if ('"+tabUrl+"'=='"+loginData[0]["url"]+"') { \n"+
+                        "   if ((getElementByXpath('"+loginData[0]["xpathValue"]+"')!=null && getElementByXpath('"+loginData[0]["xpathValue"]+"').className.indexOf('checked') > -1)) { \n"+
+                        "       getElementByXpath('"+loginData[0]["xpathValue"]+"').click(); \n"+
+                        "   } \n"+
+                        "   if (document.getElementById('toggle') != null && document.getElementById('toggle').checked || document.getElementById('toggle').ariaPressed=='true' || document.getElementById('toggle').active) { \n"+
+                        "       document.getElementById('toggle').click(); \n"+
+                        "   } \n"+
                         "} \n"
                     })
                 }
@@ -45,12 +49,15 @@ async function login() {
         chrome.tabs.create({ url: loginData[1]["url"], selected: false }, await function (tab) {
             chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
                 if (tab.url.indexOf('naver.com') != -1 && changeInfo.status == 'complete') {
+                    const tabUrl = tab.url;
                     chrome.tabs.executeScript(tabId, { code: 
-                        "console.log('naver_login') \n"+
-                        "document.querySelector('#id').value='"+loginData[1]["id"]+"'; \n"+ 
-                        "document.querySelector('#pw').value='"+loginData[1]["pwd"]+"'; \n" +
-                        "document.querySelector('#keep').click(); \n" 
+                        "console.log('naver_login'); \n"+
+                        "if ('"+tabUrl+"'.indexOf('"+loginData[1]["loginUrl"]+"') != -1) { \n"+
+                        "   document.querySelector('#id').value='"+loginData[1]["id"]+"'; \n"+ 
+                        "   document.querySelector('#pw').value='"+loginData[1]["pwd"]+"'; \n" +
+                        "   document.querySelector('#keep').click(); \n" +
                         //"document.querySelector('#wait').click(); \n"
+                        "} \n"
                     })
                     // chrome.tabs.executeScript(tabId, { code: "document.getElementById('log\.login').click();" })
                 }
