@@ -11,7 +11,7 @@ async function login() {
                 if (tab.url.indexOf('youtube.com') != -1 && changeInfo.status == 'complete') {
                     const tabUrl = tab.url;
                     chrome.tabs.executeScript(tabId, { code: 
-                        "console.log('google_login') \n"+
+                        // "console.log('google_login') \n"+
                         // "console.log('"+tabUrl+"') \n"+
                         "if ('"+tabUrl+"'.indexOf('"+loginData[0]["loginUrl"]+"') != -1 && document.querySelector('#identifierId')!=null) { \n"+
                         "   document.querySelector('#identifierId').value='"+loginData[0]["id"]+"'; \n"+
@@ -51,7 +51,7 @@ async function login() {
                 if (tab.url.indexOf('naver.com') != -1 && changeInfo.status == 'complete') {
                     const tabUrl = tab.url;
                     chrome.tabs.executeScript(tabId, { code: 
-                        "console.log('naver_login'); \n"+
+                        // "console.log('naver_login'); \n"+
                         "if ('"+tabUrl+"'.indexOf('"+loginData[1]["loginUrl"]+"') != -1) { \n"+
                         "   document.querySelector('#id').value='"+loginData[1]["id"]+"'; \n"+ 
                         "   document.querySelector('#pw').value='"+loginData[1]["pwd"]+"'; \n" +
@@ -71,7 +71,7 @@ async function login() {
             chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
                 if (tab.url.indexOf('coolenjoy.net') != -1 && changeInfo.status == 'complete') {
                     chrome.tabs.executeScript(tabId, { code: 
-                        "console.log('cooln_login') \n"+
+                        // "console.log('cooln_login') \n"+
                         "document.querySelector('#ol_id').value='"+loginData[2]["id"]+"'; \n" + 
                         "document.querySelector('#ol_pw').value='"+loginData[2]["pwd"]+"'; \n" +
                         "document.getElementById('ol_submit').click(); \n"
@@ -86,7 +86,7 @@ async function login() {
         chrome.tabs.create({ url: loginData[3]["url"], selected: false }, function (tab) {
             setTimeout(function () {
                 chrome.tabs.executeScript(tab.id, { code: 
-                    "console.log('inven_login') \n"+
+                    // "console.log('inven_login') \n"+
                     "document.querySelector('#user_id').value='"+loginData[3]["id"]+"'; \n" + 
                     "document.querySelector('#password').value='"+loginData[3]["pwd"]+"'; \n" +
                     "document.getElementById('loginBtn').click(); \n"
@@ -112,7 +112,7 @@ async function login() {
         chrome.tabs.create({ url: loginData[4]["url"], selected: false }, function (tab) {
             setTimeout(function () {
                 chrome.tabs.executeScript(tab.id, { code: 
-                    "console.log('tcafe_login') \n"+
+                    // "console.log('tcafe_login') \n"+
                     "document.querySelector('#ol_id').value='"+loginData[4]["id"]+"'; \n" + 
                     "document.querySelector('#ol_pw').value='"+loginData[4]["pwd"]+"'; \n" +
                     "document.querySelector('button').click(); \n"
