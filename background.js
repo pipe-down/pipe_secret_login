@@ -126,6 +126,27 @@ async function login() {
             }, 5000);
         })
     }
+
+    /* 디시인사이드 */
+    if (loginData[5]["try"] == 1) {
+        chrome.tabs.create({ url: loginData[5]["url"], selected: false }, await function (tab) {
+            chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+                if (tab.url.indexOf('dcinside.com') != -1 && changeInfo.status == 'complete') {
+                    const tabUrl = tab.url;
+                    chrome.tabs.executeScript(tabId, { code: 
+                        // "console.log('naver_login'); \n"+
+                        "if ('"+tabUrl+"'.indexOf('"+loginData[5]["loginUrl"]+"') != -1) { \n"+
+                        "   document.querySelector('#id').value='"+loginData[5]["id"]+"'; \n"+ 
+                        "   document.querySelector('#pw').value='"+loginData[5]["pwd"]+"'; \n" +
+                        "   document.querySelector('#container > div > article > section > div > div.login_inputbox > div > form > fieldset > button').click(); \n" +
+                        //"document.querySelector('#wait').click(); \n"
+                        "} \n"
+                    })
+                    // chrome.tabs.executeScript(tabId, { code: "document.getElementById('log\.login').click();" })
+                }
+            });
+        })
+    }
 }
 
 chrome.browserAction.onClicked.addListener(function (tab) {

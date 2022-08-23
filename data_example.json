@@ -32,6 +32,13 @@
             "pwd": "",
             "url": "http://tcafe2a.com/",
             "try": 0
+        },
+        {
+            "id": "",
+            "pwd": "",
+            "url": "https://sign.dcinside.com/login?s_url=https://www.dcinside.com/",
+            "try": 1,
+            "loginUrl": "https://sign.dcinside.com/login"
         }
     ],
     "selectedProfile": 0

@@ -1,7 +1,7 @@
 {
   "name": "개인 자동 로그인",
   "description": "로그인 편하려고 만드는 프로그램",
-  "version": "1.1",
+  "version": "1.2",
   "manifest_version": 2,
   "permissions": ["tabs","activeTab","http://*/*", "https://*/*","cookies"],
   "content_scripts": [ {
@@ -12,7 +12,8 @@
         "https://*.youtube.com/*",
         "https://*.inven.co.kr/*",
         "https://coolenjoy.net/*",
-        "http://tcafe2a.com/*"
+        "http://tcafe2a.com/*",
+        "https://*.dcinside.com/*"
       ]
   }],
   "background": {
