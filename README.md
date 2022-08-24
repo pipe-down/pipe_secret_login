@@ -2,12 +2,10 @@
 
 # try 실행 1 실행안함 0
 
-# 아래 내용 복사 후 data.json 파일로 생성
+### data_example.json 파일 복수후 data.json으로 변경
+### -> id pwd 입력 후 사용
 
-# data_example.json 파일 복수후 data.json으로 변경
-
-# -> id pwd 입력 후 사용
-
+ex)
 ```
 {
     "data": [
