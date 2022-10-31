@@ -4,46 +4,6 @@ async function login() {
     const jsonData = await r.json();
     const loginData = jsonData["data"];
 
-    /* 구글로그인 */
-    if (loginData[0]["try"] == 1) {
-        chrome.tabs.update({ url: loginData[0]["url"] }, await function (tab) {
-            chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-                if (tab.url.indexOf('youtube.com') != -1 && changeInfo.status == 'complete') {
-                    const tabUrl = tab.url;
-                    chrome.tabs.executeScript(tabId, { code: 
-                        // "console.log('google_login') \n"+
-                        // "console.log('"+tabUrl+"') \n"+
-                        "if ('"+tabUrl+"'.indexOf('"+loginData[0]["loginUrl"]+"') != -1 && document.querySelector('#identifierId')!=null) { \n"+
-                        "   document.querySelector('#identifierId').value='"+loginData[0]["id"]+"'; \n"+
-                        "   if (document.querySelector('#identifierId').value=='"+loginData[0]["id"]+"') { \n"+
-                        "       document.querySelector('#identifierNext').click(); \n"+
-                        "   } \n"+
-                        "} \n"
-                    })
-                    chrome.tabs.executeScript(tabId, { code: 
-                        "if ('"+tabUrl+"'.indexOf('"+loginData[0]["loginUrl"]+"') != -1 && document.querySelector('input[type=\"password\"]')!=null) { \n"+
-                        "   document.querySelector('input[type=\"password\"]').value='"+loginData[0]["pwd"]+"'; \n"+
-                        "   if (document.querySelector('input[type=\"password\"]').value=='"+loginData[0]["pwd"]+"') { \n"+
-                        "       document.querySelector('#passwordNext').click(); \n"+
-                        "   } \n"+
-                        "} \n"
-                    })
-
-                    chrome.tabs.executeScript(tabId, { code: 
-                        "if ('"+tabUrl+"'=='"+loginData[0]["url"]+"') { \n"+
-                        "   if ((getElementByXpath('"+loginData[0]["xpathValue"]+"')!=null && getElementByXpath('"+loginData[0]["xpathValue"]+"').className.indexOf('checked') > -1)) { \n"+
-                        "       getElementByXpath('"+loginData[0]["xpathValue"]+"').click(); \n"+
-                        "   } \n"+
-                        "   if (document.getElementById('toggle') != null && document.getElementById('toggle').checked || document.getElementById('toggle').ariaPressed=='true' || document.getElementById('toggle').active) { \n"+
-                        "       document.getElementById('toggle').click(); \n"+
-                        "   } \n"+
-                        "} \n"
-                    })
-                }
-            });
-        })
-    }
-
     /* 네이버 */
     if (loginData[1]["try"] == 1) {
         chrome.tabs.create({ url: loginData[1]["url"], selected: false }, await function (tab) {
@@ -143,6 +103,46 @@ async function login() {
                         "} \n"
                     })
                     // chrome.tabs.executeScript(tabId, { code: "document.getElementById('log\.login').click();" })
+                }
+            });
+        })
+    }
+
+    /* 구글로그인 */
+    if (loginData[0]["try"] == 1) {
+        chrome.tabs.create({ url: loginData[0]["url"] }, await function (tab) {
+            chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+                if (tab.url.indexOf('youtube.com') != -1 && changeInfo.status == 'complete') {
+                    const tabUrl = tab.url;
+                    chrome.tabs.executeScript(tabId, { code: 
+                        // "console.log('google_login') \n"+
+                        // "console.log('"+tabUrl+"') \n"+
+                        "if ('"+tabUrl+"'.indexOf('"+loginData[0]["loginUrl"]+"') != -1 && document.querySelector('#identifierId')!=null) { \n"+
+                        "   document.querySelector('#identifierId').value='"+loginData[0]["id"]+"'; \n"+
+                        "   if (document.querySelector('#identifierId').value=='"+loginData[0]["id"]+"') { \n"+
+                        "       document.querySelector('#identifierNext').click(); \n"+
+                        "   } \n"+
+                        "} \n"
+                    })
+                    chrome.tabs.executeScript(tabId, { code: 
+                        "if ('"+tabUrl+"'.indexOf('"+loginData[0]["loginUrl"]+"') != -1 && document.querySelector('input[type=\"password\"]')!=null) { \n"+
+                        "   document.querySelector('input[type=\"password\"]').value='"+loginData[0]["pwd"]+"'; \n"+
+                        "   if (document.querySelector('input[type=\"password\"]').value=='"+loginData[0]["pwd"]+"') { \n"+
+                        "       document.querySelector('#passwordNext').click(); \n"+
+                        "   } \n"+
+                        "} \n"
+                    })
+
+                    chrome.tabs.executeScript(tabId, { code: 
+                        "if ('"+tabUrl+"'=='"+loginData[0]["url"]+"') { \n"+
+                        "   if ((getElementByXpath('"+loginData[0]["xpathValue"]+"')!=null && getElementByXpath('"+loginData[0]["xpathValue"]+"').className.indexOf('checked') > -1)) { \n"+
+                        "       getElementByXpath('"+loginData[0]["xpathValue"]+"').click(); \n"+
+                        "   } \n"+
+                        "   if (document.getElementById('toggle') != null && document.getElementById('toggle').checked || document.getElementById('toggle').ariaPressed=='true' || document.getElementById('toggle').active) { \n"+
+                        "       document.getElementById('toggle').click(); \n"+
+                        "   } \n"+
+                        "} \n"
+                    })
                 }
             });
         })
