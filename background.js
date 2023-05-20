@@ -17,7 +17,7 @@ async function login() {
         { try: loginData[2]["try"], method: loginToCool, params: loginData },
         { try: loginData[3]["try"], method: loginToInven, params: loginData },
         { try: loginData[4]["try"], method: loginToTcafe, params: loginData[4] },
-        { try: loginData[5]["try"], method: dcinside, params: loginData[5] },
+        { try: loginData[5]["try"], method: dcinside, params: loginData },
         { try: loginData[0]["try"], method: googleLogin, params: loginData },
     ];
 
