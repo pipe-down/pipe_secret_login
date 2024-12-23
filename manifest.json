@@ -1,26 +1,40 @@
 {
   "name": "개인 자동 로그인",
   "description": "로그인 편하려고 만드는 프로그램",
-  "version": "1.2",
-  "manifest_version": 2,
-  "permissions": ["tabs","activeTab","http://*/*", "https://*/*","cookies"],
-  "content_scripts": [ {
+  "version": "1.3",
+  "manifest_version": 3,
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "content_scripts": [{
     "js": ["jquery-1.11.3.min.js", "common.js"],
-    "resources": [ "./data.json" ],
     "matches": [
-        "https://nid.naver.com/*",
-        "https://*.youtube.com/*",
-        "https://*.inven.co.kr/*",
-        "https://coolenjoy.net/*",
-        "http://tcafe2a.com/*",
-        "https://*.dcinside.com/*"
-      ]
+      "https://nid.naver.com/*",
+      "https://*.youtube.com/*",
+      "https://*.inven.co.kr/*",
+      "https://coolenjoy.net/*",
+      "http://tcafe2a.com/*",
+      "https://*.dcinside.com/*"
+    ]
   }],
   "background": {
-    "scripts": ["background.js"]
+    "service_worker": "background.js",
+    "type": "module"
   },
-  "browser_action": {
+  "web_accessible_resources": [{
+    "resources": ["crypto.js", "data.json"],
+    "matches": ["<all_urls>"]
+  }],
+  "action": {
     "default_title": "로그인",
     "default_icon": "images/icon.png"
-  }
+  },
+  "options_page": "options.html"
 }

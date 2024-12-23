@@ -1,0 +1,104 @@
+/* 전체 팝업에 대한 기본 스타일 */
+body {
+    width: 320px;
+    min-height: 200px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    padding: 20px;
+    margin: 0;
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+h1 {
+    font-size: 20px;
+    color: #1a1a1a;
+    margin: 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.status-box {
+    padding: 12px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    font-size: 14px;
+}
+
+.primary-button {
+    padding: 12px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.primary-button:hover {
+    background-color: #0056b3;
+}
+
+.primary-button:active {
+    transform: translateY(1px);
+}
+
+.progress-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #666;
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.secondary-button {
+    padding: 12px 20px;
+    border: none;
+    background-color: #6c757d;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.secondary-button:hover {
+    background-color: #5a6268;
+}
+
+.secondary-button:active {
+    transform: translateY(1px);
+}

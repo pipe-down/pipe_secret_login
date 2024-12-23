@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="popup.js"></script>
+    <title>로그인 관리</title>
+    <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-    <div>
-        <input type="button" value="시작" id="btn" />
+    <div class="container">
+        <h1>로그인 상태 관리</h1>
+        <div id="loginStatus" class="status-box"></div>
+        <div class="button-group">
+            <button id="loginButton" class="primary-button">로그인 시작</button>
+            <button id="optionsButton" class="secondary-button">계정 관리</button>
+        </div>
+        <div id="progressIndicator" class="progress-indicator hidden">
+            <div class="spinner"></div>
+            <span>로그인 진행 중...</span>
+        </div>
     </div>
+    <script src="popup.js" type="module"></script>
 </body>
 </html>
